@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Vue</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    
+    <div id="app">
+
+       <div :style="styles" class="conteudo">
+            <label for="temaBlack">
+                <input type="checkbox" :checked="temaBlack" @click="mudarTema" name="temaBlack" id="temaBlack">Tema Escuro
+            </label>
+            <h2 id="titulo">{{ titulo }}</h2>   
+
+            <p>{{nomeCompleto}}</p>
+
+            <hr>
+            <h2>Carrinho ({{carrinho.length}})</h2>
+
+            <ul>
+                <li v-for="(produto, index) in produtos" v-bind:key="index">
+
+                    <detalhes-produtos 
+                        :produto="produto"
+                        :produto-no-carrinho="produtoNoCarrinho(produto)"
+                        @add-produto-carrinho="addCarrinho">
+                    </detalhes-produtos>
+
+                                  
+                </li>
+
+                <hr>    
+                <exemplo-formulario></exemplo-formulario>
+            </ul>
+       </div>
+    </div>
+    
+    <script src="/app.js"></script>
+    <script src="/assets/components/detalhesProdutos.js"></script>
+    <script src="/assets/components/formularios.js"></script>
+    <script>
+        app.mount('#app');
+    </script>
+  
+</body>
+</html>
